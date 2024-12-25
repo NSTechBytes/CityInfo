@@ -1,6 +1,25 @@
+﻿/*
+       
+//=====================================================================================================================================//
+//                              Below Lines Help to use Plugin with Measures                                                           //
+//=====================================================================================================================================//
+
+[Searcher_Helper]
+Measure=Plugin
+Plugin=CityInfo
+ResultsSave=#@#Includes\SearchResults.nek
+ApiKey=#OpenCage_ApiKey#
+OnCompleteAction=[!Delay 100][!CommandMeasure Func "startResults('BackGround_Shape','1','110')"]
+
+
+For Execution ([!CommandMeasure Searcher_Helper " City name"])
+  */
+//=====================================================================================================================================//
+//                                             Main  Code Start Here                                                                   //
+//=====================================================================================================================================//
+
 using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -22,7 +41,7 @@ namespace CityInfo
         {
             this.api = api;
             ApiKey = api.ReadString("ApiKey", "").Trim();
-            ResultSave = api.ReadString("ResultSave", "").Trim();
+            ResultSave = api.ReadString("ResultsSave", "").Trim();
             OnCompleteAction = api.ReadString("OnCompleteAction", "").Trim();
 
             if (string.IsNullOrEmpty(ApiKey))
@@ -171,7 +190,7 @@ namespace CityInfo
                     writer.WriteLine(
                         $"LeftMouseUpAction=[!WriteKeyValue Variables Longitude \"{longitude}\" \"#@#GlobalVar.nek\"]"
                             + $"[!WriteKeyValue Variables Latitude \"{latitude}\" \"#@#GlobalVar.nek\"]"
-                            + $"[!WriteKeyValue Variables City \"{fetchedCityName}\" \"#@#GlobalVar.nek\"][!UpdateMeasure mToggle]"
+                            + $"[!WriteKeyValue Variables City \"{fetchedCityName}\" \"#@#GlobalVar.nek\"][!WriteKeyValue Variables Country \"{country}\" \"#@#GlobalVar.nek\"][!SetVariable Longitude  \"{longitude}\" \"#NekStart\\Main\"][!SetVariable Latitude  \"{latitude}\" \"#NekStart\\Main\"][!SetVariable City  \"{fetchedCityName}\" \"#NekStart\\Main\"][!SetVariable Country  \"{country}\" \"#NekStart\\Main\"][!UpdateMeter \"*\" \"#NekStart\\Main\"][!Redraw \"#NekStart\\Main\"][!UpdateMeasure mToggle]"
                     );
                 }
 
@@ -191,12 +210,7 @@ namespace CityInfo
             }
         }
 
-        private string ExtractNumeric(string input)
-        {
 
-            char[] allowedChars = "0123456789.-".ToCharArray();
-            return new string(input.Where(c => allowedChars.Contains(c)).ToArray());
-        }
 
         private void SaveErrorResult(string errorMessage)
         {
@@ -211,7 +225,9 @@ namespace CityInfo
             }
         }
     }
-
+    //=====================================================================================================================================//
+    //                                            Rainmeter Class                                                                          //
+    //=====================================================================================================================================//
     public static class Plugin
     {
         [DllExport]

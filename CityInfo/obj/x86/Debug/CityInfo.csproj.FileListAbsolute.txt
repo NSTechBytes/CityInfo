@@ -1,0 +1,6 @@
+C:\Users\Nasir Shahbaz\Desktop\CityInfo\CityInfo\x32\Debug\CityInfo.dll
+C:\Users\Nasir Shahbaz\Desktop\CityInfo\CityInfo\x32\Debug\CityInfo.pdb
+C:\Users\Nasir Shahbaz\Desktop\CityInfo\CityInfo\obj\x86\Debug\CityInfo.csproj.AssemblyReference.cache
+C:\Users\Nasir Shahbaz\Desktop\CityInfo\CityInfo\obj\x86\Debug\CityInfo.csproj.CoreCompileInputs.cache
+C:\Users\Nasir Shahbaz\Desktop\CityInfo\CityInfo\obj\x86\Debug\CityInfo.dll
+C:\Users\Nasir Shahbaz\Desktop\CityInfo\CityInfo\obj\x86\Debug\CityInfo.pdb
